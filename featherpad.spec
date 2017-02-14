@@ -1,14 +1,15 @@
-%global commit          17c8ca4d6faa36ba84c63f033beb089ba3168bbc
+%global commit          ca8ab7d8e196a6081ba4ae571174b29d6ee516c2
 %global commit_short    %(c=%{commit}; echo ${c:0:7})
 
 Name:       featherpad
 Version:    0.5.8
-Release:    1.%{commit_short}%{?dist}
+Release:    2.%{commit_short}%{?dist}
 Summary:    Lightweight Qt5 Plain Text Editor for Linux
 Group:      Applications/Editors
 License:    GPLv3
 URL:        https://github.com/tsujan/FeatherPad
 Source0:    https://github.com/tsujan/FeatherPad/archive/%{commit}.tar.gz#/%{name}-%{commit_short}.tar.gz
+BuildRequires:	qt5-linguist
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(xext)
 BuildRequires:	pkgconfig(Qt5Core)
@@ -36,9 +37,15 @@ make install INSTALL_ROOT=%{buildroot}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
 %{_datadir}/%{name}/help
+%dir %{_datadir}/%{name}/translations
+%{_datadir}/%{name}/translations/*.qm
 
 
 %changelog
+* Tue Feb 14 2017 Vaughan <devel at agrez dot net> - 0.5.8-2.ca8ab7d
+- Update to git commit: ca8ab7d8e196a6081ba4ae571174b29d6ee516c2
+- Add BuildRequires: qt5-linguist
+
 * Sun Oct 16 2016 Vaughan <devel at agrez dot net> - 0.5.8-1.17c8ca4
 - New release (git commit 17c8ca4d6faa36ba84c63f033beb089ba3168bbc)
 - Update BuildRequires/Requires
